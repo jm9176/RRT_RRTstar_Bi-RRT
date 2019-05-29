@@ -54,7 +54,7 @@ def finding_path(grid, start, goal, n_r, n_c, vertices, polygon):
 
             pt_list.append(new_pt)
             plt.plot([temp_var.x, new_pt.x], [temp_var.y, new_pt.y], color = 'orange')
-            
+
             # Storing the parent node of the new node
             dict_parent[new_pt] = temp_var
 
@@ -68,6 +68,11 @@ def finding_path(grid, start, goal, n_r, n_c, vertices, polygon):
 
                 return pt_list, path
 
+        # Condition to check if the path is found before the end of
+        # defined number of vertices
+        if i == (vertices-1) and goal not in pt_list:
+            print("Path not found, change the parameters")
+            return pt_list, None
 
 
 # Initialize the input grid, start and end goal
@@ -96,9 +101,10 @@ for var in final_list:
     plt.plot(var.x, var.y, color='orange', marker='o', markersize = 2)
 
 # Plotting the final path and the nodes from start to goal
-for i in range(1,len(path)):
-    plt.plot(path[i].x, path[i].y, color='red', marker='o', markersize = 1)
-    plt.plot([path[i].x, path[i-1].x],[path[i].y, path[i-1].y], color = 'red')
+if path is not None:
+    for i in range(1,len(path)):
+        plt.plot(path[i].x, path[i].y, color='red', marker='o', markersize = 1)
+        plt.plot([path[i].x, path[i-1].x],[path[i].y, path[i-1].y], color = 'red')
 
 plt.plot(start.x, start.y, color='blue', marker='o')
 plt.plot(goal.x, goal.y, color='green', marker='o')
