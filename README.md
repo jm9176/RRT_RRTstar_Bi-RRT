@@ -2,7 +2,7 @@
 
 Finding the path between given start position and goal position using RRT algorithm
 
-![image](https://user-images.githubusercontent.com/50490953/58738978-0ca6aa80-83d6-11e9-9caf-0bce60fcdda8.png)
+![image](https://user-images.githubusercontent.com/50490953/58739075-6dce7e00-83d6-11e9-8246-111cd3de2e77.png)
 
 ![image](https://user-images.githubusercontent.com/50490953/58738988-19c39980-83d6-11e9-8b88-7b611e240287.png)
 
