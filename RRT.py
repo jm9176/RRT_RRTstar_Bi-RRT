@@ -18,7 +18,7 @@ def distance(point_a, point_b):
 
 
 # Calculating the shortest path
-def finding_path(grid, start, goal, n_r, n_c, vertices, polygon):
+def finding_path(start, goal, n_r, n_c, vertices, polygon):
     # Initializing the closed and open list
     # dict_parent to store the previous (parent) node
     pt_list = [start]
@@ -94,7 +94,7 @@ polygon = Polygon(points)
 plt.gca().add_patch(plt.Polygon(points, fill = True, color = 'lightgrey'))
 
 
-final_list, path = finding_path(grid, start, goal, n_r, n_c, vertices, polygon)
+final_list, path = finding_path(start, goal, n_r, n_c, vertices, polygon)
 
 # Plotting the overall search nodes
 for var in final_list:
