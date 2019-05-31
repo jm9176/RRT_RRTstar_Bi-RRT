@@ -19,7 +19,7 @@ def distance(point_a, point_b):
 
 # Calculating the shortest path
 def finding_path(start, goal, n_r, n_c, vertices, polygon):
-    # Initializing the closed and open list
+    # Initializing the pt_list to store the navigated points
     # dict_parent to store the previous (parent) node
     pt_list = [start]
     dict_parent = {}
