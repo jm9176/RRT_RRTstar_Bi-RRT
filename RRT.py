@@ -23,7 +23,10 @@ def finding_path(start, goal, n_r, n_c, vertices, polygon):
     # dict_parent to store the previous (parent) node
     pt_list = [start]
     dict_parent = {}
+    dict_cost = {}
     delta_d = 0.2
+    path = []
+    dict_cost[start]=0
 
     for i in range(vertices):
 
@@ -57,22 +60,31 @@ def finding_path(start, goal, n_r, n_c, vertices, polygon):
 
             # Storing the parent node of the new node
             dict_parent[new_pt] = temp_var
+            dict_cost[new_pt] = dict_cost[temp_var] + distance(temp_var, new_pt)
 
-            # Defining a region to check if the current point is near to the
-            # goal or not. If yes, then connect the current node to the goal
-            if distance(new_pt, goal) < 0.2:
-                pt_list.append(goal)
-                plt.plot([goal.x, new_pt.x], [goal.y, new_pt.y], color='orange')
-                dict_parent[goal] = new_pt
-                path =  retrace_path(dict_parent, goal, start)
+    # Defining a region to check if the current point is near to the
+    # goal or not. If yes, then connect the current node to the goal
+    max_val = max(dict_cost.values())
 
-                return pt_list, path
+    for var in pt_list:
+        if var == goal:
+            path = retrace_path(dict_parent, goal, start)
 
-        # Condition to check if the path is found before the end of
-        # defined number of vertices
-        if i == (vertices-1) and goal not in pt_list:
-            print("Path not found, change the parameters")
-            return pt_list, None
+        elif distance(var, goal) < 0.5 and dict_cost[var] <= max_val:
+            pt_list.append(goal)
+            plt.plot([goal.x, var.x], [goal.y, var.y], color='orange')
+            dict_parent[goal] = var
+            max_val = dict_cost[var]
+            path = retrace_path(dict_parent, goal, start)
+
+    # Return the path if goal is reached, else return None and
+    # the navigated pt_list
+    if not path:
+        print("Path not found: Increase the vertices")
+        return pt_list, None
+    else:
+        print("Path found")
+        return pt_list, path
 
 
 # Initialize the input grid, start and end goal
@@ -81,12 +93,10 @@ n_r, n_c = 6, 6
 grid = np.full([n_r,n_c], 0, dtype = float)
 start = Node(1, 1)
 goal = Node(5, 5)
-vertices =  1000
-
+vertices =  500
 
 plt.figure()
 plt.axes()
-
 
 # Defining the polygon obstacle
 points = [[2,2], [2,2.5], [2.5,2.5], [2.5,4], [3,4],[3,2]]
