@@ -24,7 +24,7 @@ def finding_path(start, goal, n_r, n_c, vertices, polygon):
     pt_list = [start]
     dict_parent = {}
     dict_cost = {}
-    delta_d = 0.2
+    delta_d = 0.12
     path = []
     dict_cost[start]=0
 
