@@ -90,20 +90,19 @@ def finding_path(start, goal, n_r, n_c, vertices, polygon):
 # Initialize the input grid, start and end goal
 # n_r, n_c represents the no. of rows and cols in a grid
 n_r, n_c = 6, 6
-grid = np.full([n_r,n_c], 0, dtype = float)
 start = Node(1, 1)
 goal = Node(5, 5)
 vertices =  500
 
 plt.figure()
-plt.axes()
+plt.axis([0, n_r, 0, n_c])
 
 # Defining the polygon obstacle
 points = [[2,2], [2,2.5], [2.5,2.5], [2.5,4], [3,4],[3,2]]
 polygon = Polygon(points)
 plt.gca().add_patch(plt.Polygon(points, fill = True, color = 'lightgrey'))
 
-
+# Finding the final path and the navigated nodes
 final_list, path = finding_path(start, goal, n_r, n_c, vertices, polygon)
 
 # Plotting the overall search nodes
@@ -118,6 +117,5 @@ if path is not None:
 
 plt.plot(start.x, start.y, color='blue', marker='o')
 plt.plot(goal.x, goal.y, color='green', marker='o')
-
 
 plt.show()
