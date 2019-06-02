@@ -123,6 +123,7 @@ points = [[2, 2], [2, 4], [4, 4], [4, 2]]
 polygon = Polygon(points)
 plt.gca().add_patch(plt.Polygon(points, fill=True, color='lightgrey'))
 
+# Finding the final path and the navigated points
 final_list, path = finding_path(start, goal, n_r, n_c, vertices, polygon)
 
 # Plotting the overall search nodes
