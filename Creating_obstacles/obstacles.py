@@ -1,3 +1,6 @@
+# Creating the obstacles in the grid and to check if
+# the selected point lies within the obstacle or not
+
 import matplotlib.pyplot as plt
 from shapely.geometry.polygon import Polygon
 from shapely.geometry import Point
